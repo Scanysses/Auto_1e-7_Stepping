@@ -3,18 +3,21 @@
   "id": "auto_1e-7_stepping",
   "version": "${version}",
   "name": "Auto 1e-7 Stepping",
-  "description": "Simple mod that allows easely use 1e-7 stepping",
-  "authors": [],
+  "description": "Simple mod that allows easily use 1e-7 stepping",
+  "authors": ["Scanysses"],
   "contact": {},
   "license": "MIT",
   "icon": "assets/auto_1e-7_stepping/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "net.scanysses.auto_1e7_stepping.client.Auto_1e7_steppingClient"
+      "dev.scanysses.auto_1e7_stepping.client.Auto1e7SteppingClient"
     ],
     "main": [
-      "net.scanysses.auto_1e7_stepping.Auto_1e7_stepping"
+      "dev.scanysses.auto_1e7_stepping.Auto1e7Stepping"
+    ],
+    "modmenu": [
+      "dev.scanysses.auto_1e7_stepping.client.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -27,6 +30,7 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "yet_another_config_lib_v3": ">=3.7.1+1.21.6-fabric"
   }
 }

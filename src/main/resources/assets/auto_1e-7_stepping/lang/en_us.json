@@ -1,0 +1,12 @@
+{
+  "yacl3.config.auto1e7:config.positioningMode":  "Positioning mode:",
+  "packetMode.description": "Choose how player positioning will work.\n\nPacket mode sends packet to server with the required precise position.\n\nScript mode performs a sequence of actions that the player could perform manually, but does it a bit faster.",
+
+  "yacl3.config.enum.PositioningMode.packet": "Packet",
+  "yacl3.config.enum.PositioningMode.script": "Script",
+
+  "yacl3.config.auto1e7:config.category.general": "General",
+
+  "key.auto1e7.position": "Player positioning key",
+  "bind.category.auto1e7": "Auto 1e-7 Stepping"
+}

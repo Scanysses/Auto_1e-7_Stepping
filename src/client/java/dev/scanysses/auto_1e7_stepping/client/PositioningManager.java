@@ -4,31 +4,34 @@ import dev.scanysses.auto_1e7_stepping.Auto1e7Config;
 import dev.scanysses.auto_1e7_stepping.PositioningMode;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.text.Text;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PositioningManager {
 
+    private final MinecraftClient client;
+    private static final Queue<Runnable> scriptQueue = new LinkedList<>();
+
     public PositioningManager(MinecraftClient client) {
+        this.client = client;
     }
 
     public void executePositioning() {
         PositioningMode mode = Auto1e7Config.HANDLER.instance().positioningMode;
 
         switch (mode) {
-            case PACKET:
-                executeAxisPush();
-                break;
-            case SCRIPT:
-                if (MinecraftClient.getInstance().player != null) {
-                    MinecraftClient.getInstance().player.sendMessage(Text.literal("Script mode not available yet!"), false);
-                }
-                break;
+            case PACKET -> executeAxisPush();
+            case SCRIPT -> executeScriptMode();
         }
     }
 
     public void executeAxisPush() {
         MinecraftClient client1 = MinecraftClient.getInstance();
+
+        System.out.println("[Auto1e7] Positioning activated with PACKET mode");
 
         ClientPlayerEntity player = client1.player;
         if (player == null) return;
@@ -37,13 +40,10 @@ public class PositioningManager {
         double y = client1.player.getY();
         double z = client1.player.getZ();
 
-//        double distance = 3.1623e-4;
         double distance = 0.00000005; // 0.0000001
 //        double distance = -3.0;
 
         Vec3d offset;
-
-//        float yaw = client1.player.getYaw() % 360;
 
         float yaw = YawAlign.alignToAxis(client1) % 360f;
         if (yaw < 0) yaw += 360f;
@@ -62,4 +62,42 @@ public class PositioningManager {
         client1.player.updatePosition(x + offset.x, y, z + offset.z);
 
     }
+
+    private void executeScriptMode() {
+        ClientPlayerEntity player = client.player;
+        if (player == null) return;
+
+        System.out.println("[Auto1e7] Positioning activated with SCRIPT mode");
+        YawAlign.alignToAxis(client);
+
+        scriptQueue.clear();
+
+        scriptQueue.add(() -> press(client.options.sneakKey, true));
+
+        scriptQueue.add(() -> press(client.options.backKey, true));
+
+        scriptQueue.add(() -> press(client.options.backKey, false));
+
+        scriptQueue.add(() -> client.player.changeLookDirection(((double) 100 / 15)*0.1, 0));
+
+        scriptQueue.add(() -> {}); // very important one tick delay
+
+        scriptQueue.add(() -> press(client.options.forwardKey, true));
+
+        scriptQueue.add(() -> press(client.options.forwardKey, false));
+
+        scriptQueue.add(() -> press(client.options.sneakKey, false));
+    }
+
+    public void tick() {
+        if (!scriptQueue.isEmpty()) {
+            Runnable step = scriptQueue.poll();
+            step.run();
+        }
+    }
+
+    private void press(KeyBinding key, boolean pressed) {
+        KeyBinding.setKeyPressed(key.getDefaultKey(), pressed);
+    }
+
 }

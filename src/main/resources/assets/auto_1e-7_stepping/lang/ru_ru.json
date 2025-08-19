@@ -1,0 +1,11 @@
+{
+  "yacl3.config.auto1e7:config.positioningMode":  "Режим позиционирования:",
+  "packetMode.description": "Выбор режимов работы позиционирования игрока.\n\nПакетный режим отправляет запрос на сервер о перемещении на точную позицю.\n\nСкриптовый режим выполняет последовотельность действий, которую игрок может выполнить вручную, но делает это быстрее.",
+
+  "yacl3.config.enum.PositioningMode.packet": "Пакетный",
+  "yacl3.config.enum.PositioningMode.script": "Скриптовый",
+
+  "yacl3.config.auto1e7:config.category.general": "Общие",
+
+  "key.auto1e7.position": "Позоционирования игрока"
+}

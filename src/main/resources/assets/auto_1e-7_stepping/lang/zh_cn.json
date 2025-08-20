@@ -1,0 +1,8 @@
+{
+  "yacl3.config.auto1e7:config.positioningMode":  "定位模式：",
+  "packetMode.description": "选择玩家位置的设置方式。\n\n“Packet”模式将包含所需精确位置的包发送至服务器。\n\n“Script”模式会执行一系列玩家可以手动执行的操作，但速度会稍快一些。",
+
+  "yacl3.config.auto1e7:config.category.general": "通用",
+
+  "key.auto1e7.position": "玩家定位功能"
+}

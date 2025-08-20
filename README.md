@@ -19,7 +19,7 @@
         <br>
         Then the game checks the collision with the top block. If there's nothing — the game lets you move further. If there's a block, it again sets your position next to the edge, but still thinks that you're standing on the block that gives you a little time gap to make a jump.
        </p>
-       <p><a link="https://docs.google.com/presentation/d/1gcTlhy8Je6xVHNQDKYxLF217fsE0rtVu3wbLu6bD8gw">Here you can find more detailed explanation of how this mechanics works (*click*).</a></p>
+       <p><a href="https://docs.google.com/presentation/d/1gcTlhy8Je6xVHNQDKYxLF217fsE0rtVu3wbLu6bD8gw">Here you can find more detailed explanation of how this mechanics works (*click*).</a></p>
      </td>
      <td>
        <img src="https://cdn.modrinth.com/data/cached_images/b71ab478afa26adb914d4d70e1a508fc4b44ca94.png" width="400" alt="minecraft movement explanation picture 1">

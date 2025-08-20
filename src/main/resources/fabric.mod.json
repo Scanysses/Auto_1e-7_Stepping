@@ -5,7 +5,11 @@
   "name": "Auto 1e-7 Stepping",
   "description": "Simple mod that allows easily use 1e-7 stepping",
   "authors": ["Scanysses"],
-  "contact": {},
+  "contact": {
+    "sources": "https://github.com/Scanysses/Auto_1e-7_Stepping",
+    "issues": "https://github.com/Scanysses/Auto_1e-7_Stepping/issues",
+    "homepage": "https://modrinth.com/mod/auto-1e-7-stepping"
+  },
   "license": "MIT",
   "icon": "assets/auto_1e-7_stepping/icon.png",
   "environment": "client",
@@ -30,7 +34,7 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}",
+    "minecraft": "~${minecraft_version}",
     "yet_another_config_lib_v3": ">=3.7.1+1.21.6-fabric"
   }
 }

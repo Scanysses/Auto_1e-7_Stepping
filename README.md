@@ -8,7 +8,7 @@
 
 <table>
   <tr>
-    <td width="650">
+    <td width="75%">
       <p>
          If you move along any axis less than the hardcoded value of 1e-7 (or 0.0000001) — the movement gets canceled. This brings us to the collision checks. When you're about to collide with a block — Minecraft doesn't let you do it and sets your position next to the edge of a block so the distance to it is about 1e-8. Then the game squares the movement vector and if the result is less than 1e-7 — movement gets canceled.
         <br>

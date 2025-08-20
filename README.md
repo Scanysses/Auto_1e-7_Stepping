@@ -67,7 +67,7 @@ By default keybind is "O"
   </tr>
   <tr>
     <td>
-      Firts positioning mode
+      First positioning mode
     </td>
     <td>
       Second positioning mode
@@ -96,7 +96,7 @@ By default keybind is "O"
 <p>
   - English<br>
   - Russian (may be not 100% accurate)<br>
-  - Simplified Chinise (may be not 100% accurate)
+  - Simplified Chinese (may be not 100% accurate)
 </p>
 <h3>
   If you want to help with mod translation — you can contact me on discord <a href="https://discord.com/channels/@me">scany_alt</a>

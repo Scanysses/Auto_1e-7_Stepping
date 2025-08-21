@@ -1,7 +1,6 @@
 <h1>Auto 1e-7 Stepping
 </h1>
 <h2>Little utility mod to make 1e-7 stepping mechanics easier to use<br><br></h2>
-<a href='https://ko-fi.com/Y8Y817CFTJ' target='_blank'><br><img src='https://cdn.modrinth.com/data/cached_images/8c6549fb46524f38008b3e7d187011369e822154.png' alt='Buy Me a Coffee at ko-fi.com' width="170"/><br><br></a>
 
 <details>
 <summary><h3>If you don't know what 1e-7 stepping is, here's quick (and not the most accurate) explanation to understand the basic principals of this mechanic:</h3></summary>
@@ -106,6 +105,3 @@ By default keybind is "O"
   If you found a bug — please report it on <a href="https://github.com/Scanysses/Auto_1e-7_Stepping/issues">GitHub's Issues page</a>
 </h3>
 <br>
-<h2>
-  If you find my mod useful, you can <a href="https://ko-fi.com/Y8Y817CFTJ">leave me a tip</a> and I'll be happy :) and maybe it'll give me some additional motivation to develop this project further (add more functionality, not just player positioning).
-</h2>

@@ -1,9 +1,9 @@
 <h1>Auto 1e-7 Stepping
 </h1>
-<h2>Little utility mod to make 1e-7 stepping mechanics easier to use<br><br></h2>
+<p><b>Little utility mod to make 1e-7 stepping mechanics easier to use</b><br><br></p>
 
 <details>
-<summary><h3>If you don't know what 1e-7 stepping is, here's quick (and not the most accurate) explanation to understand the basic principals of this mechanic:</h3></summary>
+<summary><p><b>If you don't know what 1e-7 stepping is, here's quick (and not the most accurate) explanation to understand the basic principals of this mechanic:</b></p></summary>
 
 <table>
   <tr>
@@ -43,7 +43,7 @@
 </p>
 
 ```
-By default keybind is "O"
+By default keybind is set to "O"
 ```
 
 <p>
@@ -89,19 +89,19 @@ By default keybind is "O"
 
 <br>
 
-<h3>
-  Currently mod supports 3 languages:<br>
-</h3>
+<h2>
+  Languages supported<br>
+</h2>
 <p>
   - English<br>
   - Russian (may be not 100% accurate)<br>
   - Simplified Chinese (may be not 100% accurate)
 </p>
-<h3>
+<p><b>
   If you want to help with mod translation — you can contact me on discord <a href="https://discord.com/channels/@me">scany_alt</a>
-</h3>
+</b></p>
 <br>
-<h3>
+<p><b>
   If you found a bug — please report it on <a href="https://github.com/Scanysses/Auto_1e-7_Stepping/issues">GitHub's Issues page</a>
-</h3>
+</b></p>
 <br>

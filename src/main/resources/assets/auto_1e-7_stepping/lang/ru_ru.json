@@ -7,5 +7,7 @@
 
   "yacl3.config.auto1e7:config.category.general": "Общие",
 
-  "key.auto1e7.position": "Позоционирования игрока"
+  "key.auto1e7.position": "Позоционирования игрока",
+
+  "auto1e7.swiftsneak.exception.legs": "[Auto 1e-7] Ваши поножи зачарованы на проворство. Пожалуйста снимите их прежде чем использовать позиционирование в скриптовом режиме."
 }

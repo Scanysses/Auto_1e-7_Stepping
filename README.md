@@ -1,14 +1,13 @@
 <h1>Auto 1e-7 Stepping
 </h1>
-<h2>Little utility mod to make 1e-7 stepping mechanics easier to use<br><br></h2>
-<a href='https://ko-fi.com/Y8Y817CFTJ' target='_blank'><br><img src='https://cdn.modrinth.com/data/cached_images/8c6549fb46524f38008b3e7d187011369e822154.png' alt='Buy Me a Coffee at ko-fi.com' width="170"/><br><br></a>
+<p><b>Little utility mod to make 1e-7 stepping mechanics easier to use</b><br><br></p>
 
 <details>
-<summary><h3>If you don't know what 1e-7 stepping is, here's quick (and not the most accurate) explanation to understand the basic principals of this mechanic:</h3></summary>
+<summary><b>If you don't know what 1e-7 stepping is, here's quick (and not the most accurate) explanation to understand the basic principals of this mechanic:</b></summary>
 
 <table>
   <tr>
-    <td width="75%">
+    <td style="width: 75%">
       <p>
          If you move along any axis less than the hardcoded value of 1e-7 (or 0.0000001) — the movement gets canceled. This brings us to the collision checks. When you're about to collide with a block — Minecraft doesn't let you do it and sets your position next to the edge of a block so the distance to it is about 1e-8. Then the game squares the movement vector and if the result is less than 1e-7 — movement gets canceled.
         <br>
@@ -44,7 +43,7 @@
 </p>
 
 ```
-By default keybind is "O"
+By default keybind is set to "O"
 ```
 
 <p>
@@ -58,7 +57,7 @@ By default keybind is "O"
 
 <table>
   <tr>
-    <td width="50%">
+    <td style="width: 50%">
       <img src="https://cdn.modrinth.com/data/cached_images/e039c6f20a7868e991c7b86b9ee8bb0687baeb7f.gif" alt="First positioning mode demonstration">
     </td>
     <td>
@@ -90,22 +89,19 @@ By default keybind is "O"
 
 <br>
 
-<h3>
-  Currently mod supports 3 languages:<br>
-</h3>
+<h2>
+  Languages supported<br>
+</h2>
 <p>
   - English<br>
   - Russian (may be not 100% accurate)<br>
   - Simplified Chinese (may be not 100% accurate)
 </p>
-<h3>
+<p><b>
   If you want to help with mod translation — you can contact me on discord <a href="https://discord.com/channels/@me">scany_alt</a>
-</h3>
+</b></p>
 <br>
-<h3>
+<p><b>
   If you found a bug — please report it on <a href="https://github.com/Scanysses/Auto_1e-7_Stepping/issues">GitHub's Issues page</a>
-</h3>
+</b></p>
 <br>
-<h2>
-  If you find my mod useful, you can <a href="https://ko-fi.com/Y8Y817CFTJ">leave me a tip</a> and I'll be happy :) and maybe it'll give me some additional motivation to develop this project further (add more functionality, not just player positioning).
-</h2>

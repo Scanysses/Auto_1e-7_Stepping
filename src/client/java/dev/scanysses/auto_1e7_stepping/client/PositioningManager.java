@@ -5,6 +5,16 @@ import dev.scanysses.auto_1e7_stepping.PositioningMode;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.LinkedList;
@@ -68,25 +78,41 @@ public class PositioningManager {
         if (player == null) return;
 
         System.out.println("[Auto1e7] Positioning activated with SCRIPT mode");
-        YawAlign.alignToAxis(client);
 
-        scriptQueue.clear();
+//        if (client.player.getEquippedStack(EquipmentSlot.LEGS).getEnchantments().getLevel())
 
-        scriptQueue.add(() -> press(client.options.sneakKey, true));
+        if (!hasEnchantment(client, Enchantments.SWIFT_SNEAK, EquipmentSlot.LEGS)) {
 
-        scriptQueue.add(() -> press(client.options.backKey, true));
+            YawAlign.alignToAxis(client);
 
-        scriptQueue.add(() -> press(client.options.backKey, false));
+            scriptQueue.clear();
 
-        scriptQueue.add(() -> client.player.changeLookDirection(((double) 100 / 15)*0.1, 0));
+            if (!client.options.getSneakToggled().getValue()) {
+                scriptQueue.add(() -> press(client.options.sneakKey, true));
+                scriptQueue.add(() -> press(client.options.backKey, true));
+                scriptQueue.add(() -> press(client.options.backKey, false));
+                scriptQueue.add(() -> client.player.changeLookDirection(((double) 100 / 15) * 0.1, 0));
+                scriptQueue.add(() -> {}); // very important one tick delay
+                scriptQueue.add(() -> press(client.options.forwardKey, true));
+                scriptQueue.add(() -> press(client.options.forwardKey, false));
+                scriptQueue.add(() -> press(client.options.sneakKey, false));
+            } else {
+                scriptQueue.add(() -> press(client.options.sneakKey, true));
+                scriptQueue.add(() -> press(client.options.sneakKey, false));
+                scriptQueue.add(() -> press(client.options.backKey, true));
+                scriptQueue.add(() -> press(client.options.backKey, false));
+                scriptQueue.add(() -> client.player.changeLookDirection(((double) 100 / 15) * 0.1, 0));
+                scriptQueue.add(() -> {}); // very important one tick delay
+                scriptQueue.add(() -> press(client.options.forwardKey, true));
+                scriptQueue.add(() -> press(client.options.forwardKey, false));
+                scriptQueue.add(() -> press(client.options.sneakKey, true));
+                scriptQueue.add(() -> press(client.options.sneakKey, false));
+            }
 
-        scriptQueue.add(() -> {}); // very important one tick delay
+        } else {
+            client.player.sendMessage(Text.translatable("auto1e7.swiftsneak.exception.legs"), false);
+        }
 
-        scriptQueue.add(() -> press(client.options.forwardKey, true));
-
-        scriptQueue.add(() -> press(client.options.forwardKey, false));
-
-        scriptQueue.add(() -> press(client.options.sneakKey, false));
     }
 
     public void tick() {
@@ -98,6 +124,20 @@ public class PositioningManager {
 
     private void press(KeyBinding key, boolean pressed) {
         KeyBinding.setKeyPressed(key.getDefaultKey(), pressed);
+    }
+
+    public static boolean hasEnchantment(MinecraftClient client, RegistryKey<Enchantment> enchantments, EquipmentSlot slot) {
+        assert client.player != null;
+        ItemStack stack = client.player.getEquippedStack(slot);
+
+        Registry<Enchantment> enchantmentRegistry = client.player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+
+        RegistryEntry<Enchantment> enchantmentEntry = enchantmentRegistry.getOrThrow(enchantments);
+
+        if (stack.isEmpty()) {return false;}
+
+        int level = EnchantmentHelper.getLevel(enchantmentEntry, stack);
+        return level > 0;
     }
 
 }

@@ -8,7 +8,5 @@
   "yacl3.config.auto1e7:config.category.general": "General",
 
   "key.auto1e7.position": "Player positioning key",
-  "bind.category.auto1e7": "Auto 1e-7 Stepping",
-
-  "auto1e7.swiftsneak.exception.legs": "[Auto 1e-7] You have a swift sneak enchantment on your leggings. Please wear it off before using positioning in script mode."
+  "bind.category.auto1e7": "Auto 1e-7 Stepping"
 }

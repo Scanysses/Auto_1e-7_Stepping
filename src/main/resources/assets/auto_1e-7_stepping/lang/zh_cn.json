@@ -4,7 +4,5 @@
 
   "yacl3.config.auto1e7:config.category.general": "通用",
 
-  "key.auto1e7.position": "玩家定位功能",
-
-  "auto1e7.swiftsneak.exception.legs": "[Auto 1e-7] 您的护腿上施加了迅捷潜行附魔。请在使用“Script”模式定位功能前先脱下护腿。"
+  "key.auto1e7.position": "玩家定位功能"
 }

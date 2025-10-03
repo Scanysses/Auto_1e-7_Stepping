@@ -8,5 +8,5 @@
   "yacl3.config.auto1e7:config.category.general": "General",
 
   "key.auto1e7.position": "Player positioning key",
-  "bind.category.auto1e7": "Auto 1e-7 Stepping"
+  "key.category.minecraft.bind.auto1e7": "Auto 1e-7 Stepping"
 }

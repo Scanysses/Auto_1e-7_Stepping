@@ -5,17 +5,21 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class Auto1e7ClientKeyBinds {
     private static KeyBinding positionKey;
 
     public static void register() {
+
+        KeyBinding.Category category = KeyBinding.Category.create(Identifier.of("bind.auto1e7"));
+
         positionKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.auto1e7.position",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_O,
-                "bind.category.auto1e7"
+                category
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {

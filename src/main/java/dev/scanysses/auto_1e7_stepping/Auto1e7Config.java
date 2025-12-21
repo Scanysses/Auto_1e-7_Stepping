@@ -28,15 +28,7 @@ public final class Auto1e7Config {
     @CustomDescription ("packetMode.description")
     public PositioningMode positioningMode = PositioningMode.PACKET;
 
-//    public static Auto1e7Config instance() {
-//        return HANDLER.instance();
-//    }
-
     public static void load() {
         Auto1e7Config.HANDLER.load();
     }
-
-//    public static void save() {
-//        Auto1e7Config.HANDLER.save();
-//    }
 }

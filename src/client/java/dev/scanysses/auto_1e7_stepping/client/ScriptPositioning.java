@@ -1,23 +1,23 @@
 package dev.scanysses.auto_1e7_stepping.client;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.core.BlockPos;
 
 import java.util.Queue;
 
 public class ScriptPositioning {
-    public void executeScriptMode(MinecraftClient client, Queue<PositioningStep> scriptQueue) {
+    public void executeScriptMode(Minecraft client, Queue<PositioningStep> scriptQueue) {
         if (client.player == null) return;
 
         System.out.println("[Auto1e7] Positioning activated with SCRIPT mode");
 
-        boolean sneakToggleMode = client.options.getSneakToggled().getValue();
+        boolean sneakToggleMode = client.options.toggleCrouch().get();
 
         double yawChange = ((double) 100 / 15) * 0.05;
 
@@ -29,15 +29,15 @@ public class ScriptPositioning {
 
         if (EnchantmentCheck.getEnchantmentLevel(client, Enchantments.SOUL_SPEED, EquipmentSlot.FEET) > 0) {
 
-            assert client.world != null;
-            BlockPos blockPosDown = client.player.getBlockPos().down();
-            BlockState blockStateDown = client.world.getBlockState(blockPosDown);
+            assert client.level != null;
+            BlockPos blockPosDown = client.player.blockPosition().below();
+            BlockState blockStateDown = client.level.getBlockState(blockPosDown);
 
-            BlockPos blockPosAtFeet = BlockPos.ofFloored(client.player.getX(), client.player.getY() - 0.01, client.player.getZ());
-            BlockState blockStateAtFeet = client.world.getBlockState(blockPosAtFeet);
+            BlockPos blockPosAtFeet = BlockPos.containing(client.player.getX(), client.player.getY() - 0.01, client.player.getZ());
+            BlockState blockStateAtFeet = client.level.getBlockState(blockPosAtFeet);
 
-            boolean onSoulBlock = blockStateDown.isOf(Blocks.SOUL_SAND) ||
-                    blockStateDown.isOf(Blocks.SOUL_SOIL) || blockStateAtFeet.isOf(Blocks.SOUL_SAND);
+            boolean onSoulBlock = blockStateDown.is(Blocks.SOUL_SAND) ||
+                    blockStateDown.is(Blocks.SOUL_SOIL) || blockStateAtFeet.is(Blocks.SOUL_SAND);
 
             if (onSoulBlock) {
                 hasSoulSpeedBoost = true;
@@ -45,7 +45,7 @@ public class ScriptPositioning {
 
         }
 
-        boolean hasSpeed = client.player.hasStatusEffect(StatusEffects.SPEED);
+        boolean hasSpeed = client.player.hasEffect(MobEffects.SPEED);
 
         int tickDelay = switch ((hasSoulSpeedBoost ? 1 : 0) | (hasSwiftSneak ? 2 : 0) | (hasSpeed ? 4 : 0)) {
             case 7 -> { yawChange *= 0.5; yield 4; }    // speed effect + soul speed + swift sneak
@@ -64,27 +64,27 @@ public class ScriptPositioning {
 
         scriptQueue.clear();
 
-        scriptQueue.add(new PositioningStep(0, () -> press(client.options.sneakKey, true)));
+        scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyShift, true)));
         if (!sneakToggleMode) {
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.backKey, true)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.backKey, false)));
-            scriptQueue.add(new PositioningStep(tickDelay, () -> client.player.changeLookDirection(finalYawChange, 0)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.forwardKey, true)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.forwardKey, false)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyDown, true)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyDown, false)));
+            scriptQueue.add(new PositioningStep(tickDelay, () -> client.player.turn(finalYawChange, 0)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyUp, true)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyUp, false)));
         } else {
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.sneakKey, false)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.backKey, true)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.backKey, false)));
-            scriptQueue.add(new PositioningStep(tickDelay, () -> client.player.changeLookDirection(finalYawChange, 0)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.forwardKey, true)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.forwardKey, false)));
-            scriptQueue.add(new PositioningStep(0, () -> press(client.options.sneakKey, true)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyShift, false)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyDown, true)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyDown, false)));
+            scriptQueue.add(new PositioningStep(tickDelay, () -> client.player.turn(finalYawChange, 0)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyUp, true)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyUp, false)));
+            scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyShift, true)));
         }
-        scriptQueue.add(new PositioningStep(0, () -> press(client.options.sneakKey, false)));
+        scriptQueue.add(new PositioningStep(0, () -> press(client.options.keyShift, false)));
 
     }
 
-    private void press(KeyBinding key, boolean pressed) {
-        KeyBinding.setKeyPressed(key.getDefaultKey(), pressed);
+    private void press(KeyMapping key, boolean pressed) {
+        KeyMapping.set(key.getDefaultKey(), pressed);
     }
 }

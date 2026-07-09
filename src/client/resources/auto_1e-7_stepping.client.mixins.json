@@ -1,8 +1,7 @@
 {
   "required": true,
-  "minVersion": "0.8",
-  "package": "net.scanysses.auto_1e7_stepping.mixin.client",
-  "compatibilityLevel": "JAVA_21",
+  "package": "net.scanysses.auto_1e7_stepping.client.mixin",
+  "compatibilityLevel": "JAVA_25",
   "client": [
   ],
   "injectors": {

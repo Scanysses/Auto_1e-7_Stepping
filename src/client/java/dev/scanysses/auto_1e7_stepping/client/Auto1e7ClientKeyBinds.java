@@ -1,30 +1,30 @@
 package dev.scanysses.auto_1e7_stepping.client;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.util.Identifier;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.KeyMapping;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class Auto1e7ClientKeyBinds {
-    private static KeyBinding positionKey;
+    private static KeyMapping positionKey;
 
     public static void register() {
 
-        KeyBinding.Category category = KeyBinding.Category.create(Identifier.of("bind.auto1e7"));
+        KeyMapping.Category category = KeyMapping.Category.register(Identifier.parse("bind.auto1e7"));
 
-        positionKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        positionKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.auto1e7.position",
-                InputUtil.Type.KEYSYM,
+                InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_O,
                 category
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while(positionKey.wasPressed()) {
-                PositioningManager manager = new PositioningManager(MinecraftClient.getInstance());
+            while(positionKey.consumeClick()) {
+                PositioningManager manager = new PositioningManager(Minecraft.getInstance());
                 manager.executePositioning();
             }
         });

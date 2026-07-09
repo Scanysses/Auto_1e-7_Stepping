@@ -2,7 +2,7 @@ package dev.scanysses.auto_1e7_stepping;
 
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.util.Identifier; // or ResourceLocation depending on mappings
+import net.minecraft.resources.Identifier; // or ResourceLocation depending on mappings
 
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -14,7 +14,7 @@ import dev.isxander.yacl3.config.v2.api.autogen.CustomDescription;
 public final class Auto1e7Config {
 
     public static final ConfigClassHandler<Auto1e7Config> HANDLER = ConfigClassHandler.createBuilder(Auto1e7Config.class)
-            .id(Identifier.of("auto1e7", "config"))
+            .id(Identifier.fromNamespaceAndPath("auto1e7", "config"))
             .serializer(cfg -> GsonConfigSerializerBuilder.create(cfg)
                     .setPath(FabricLoader.getInstance().getConfigDir().resolve("auto1e7.json5"))
                     .appendGsonBuilder(GsonBuilder::setPrettyPrinting)

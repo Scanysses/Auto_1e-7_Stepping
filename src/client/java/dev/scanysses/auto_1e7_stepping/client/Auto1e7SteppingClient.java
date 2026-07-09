@@ -4,7 +4,7 @@ import dev.scanysses.auto_1e7_stepping.Auto1e7Config;
 import net.fabricmc.api.ClientModInitializer;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +22,7 @@ public class Auto1e7SteppingClient implements ClientModInitializer {
 
         Auto1e7ClientKeyBinds.register();
 
-        positioningManager = new PositioningManager(MinecraftClient.getInstance());
+        positioningManager = new PositioningManager(Minecraft.getInstance());
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player != null && positioningManager != null) {

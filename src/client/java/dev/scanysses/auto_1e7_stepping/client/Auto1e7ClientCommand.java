@@ -15,7 +15,7 @@ public class Auto1e7ClientCommand {
                         .executes(context -> {
                             Minecraft client = context.getSource().getClient();
                             client.schedule(() -> client.execute(() ->
-                                    client.setScreen(Auto1e7Config.HANDLER.generateGui().generateScreen(null))));
+                                    client.gui.setScreen(Auto1e7Config.HANDLER.generateGui().generateScreen(null))));
                             return 1;
                         })
                 ).then(ClientCommands.literal("positioning")

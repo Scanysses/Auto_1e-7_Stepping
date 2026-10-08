@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.resources.Identifier;
-import org.lwjgl.glfw.GLFW;
 
 public class Auto1e7ClientKeyBinds {
     private static KeyMapping positionKey;
@@ -17,8 +16,8 @@ public class Auto1e7ClientKeyBinds {
 
         positionKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.auto1e7.position",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_O,
+                InputConstants.Type.KEYBOARD,
+                InputConstants.KEY_0,
                 category
         ));
 
